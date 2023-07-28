@@ -17,6 +17,17 @@ const Cart = () => {
 
   const { cart } = useStateContext();
 
+  if(!cart.length) {
+    return (
+      <Container>
+      <TopBorder></TopBorder>
+        <InnerContainer>
+          <p>There is no cart items...</p>
+        </InnerContainer>
+      </Container>
+    )
+  }
+
   return (
     <Container >
       <TopBorder></TopBorder>
