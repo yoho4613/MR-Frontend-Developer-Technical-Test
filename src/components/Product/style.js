@@ -15,11 +15,15 @@ export const Container = styled.div`
 export const Img = styled.img`
   height: 63rem;
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 20rem;
+    width: 90vw;
+    max-width: 30rem;
     height: auto;
     margin: 0 auto 3rem;
     margin-bottom: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    max-width: none;
   }
 `;
 

@@ -7,29 +7,36 @@ export const Container = styled.div`
   transform: translateY(100%);
   border: 1px solid #888;
   border-top: none;
-  width: 24rem;
+  width: 34rem;
   height: auto;
   background-color: #fff;
+
+  @media (max-width: 480px) {
+    width: 90vw;
+  }
 `;
 
 export const TopBorder = styled.div`
-  width: 14rem;
+  width: 24rem;
   border-top: 1px solid #888;
+  @media (max-width: 480px) {
+    width: calc(90vw - 10rem)
+  }
 `;
 
 export const InnerContainer = styled.div`
-  padding: 2rem;
+  padding: 2.5rem;
 `;
 
 export const CartList = styled.li`
   display: flex;
   list-style: none;
-  justify-content: space-around;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 `;
 
 export const ItemImg = styled.img`
-  width: 6rem;
+  width: 10rem;
+  margin-right: 3rem;
 `;
 
 export const ItemContentBox = styled.div`
@@ -39,11 +46,12 @@ export const ItemContentBox = styled.div`
 
 export const ItemTitle = styled.h4`
   font-weight: 100;
+  font-size: 2rem;
 `;
 
 export const ItemPriceContainer = styled.p`
-  font-size: 1.4rem;
-  margin: 1rem 0;
+  ${'' /* font-size: 1.4rem; */}
+  margin: 2rem 0;
 `;
 
 export const ItemPrice = styled.span`
@@ -51,5 +59,5 @@ export const ItemPrice = styled.span`
 `;
 
 export const ItemSize = styled.p`
-  font-size: 1.4rem;
+  ${'' /* font-size: 1.4rem; */}
 `;
