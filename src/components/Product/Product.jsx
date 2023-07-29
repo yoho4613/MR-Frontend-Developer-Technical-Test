@@ -19,9 +19,9 @@ import { useStateContext } from "../../context/StateContext";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
-  const { setCart } = useStateContext();
+  const { setCart, cart } = useStateContext();
   const [input, setInput] = useState({ quantity: 1 });
-  const [warning, setWarning] = useState(false)
+  const [warning, setWarning] = useState(false);
 
   useEffect(() => {
     fetchProductDetail();
@@ -40,6 +40,7 @@ const Product = () => {
     setProduct(product);
     setInput((prev) => ({
       ...prev,
+      id: product.id,
       title: product.title,
       price: product.price,
       imageURL: product.imageURL,
@@ -47,13 +48,26 @@ const Product = () => {
   };
 
   const addToCart = () => {
-    if(!input.title || !input.quantity || !input.imageURL || !input.size) {
-      setWarning(true)
+    if (!input.title || !input.quantity || !input.imageURL || !input.size) {
+      setWarning(true);
       return;
     }
-    setCart((prev) => [...prev, input])
-    setWarning(false)
-  }
+
+    if (cart.find((item) => item.id === input.id && item.size === input.size)) {
+      setCart((prev) =>
+        prev.map((item) =>
+          item.id === input.id && item.size === input.size
+            ? { ...item, quantity: Number(item.quantity) + Number(input.quantity) }
+            : item
+        )
+      );
+    } else {
+      setCart((prev) => [...prev, input]);
+    }
+
+    setWarning(false);
+    setInput( prev => ({...prev, quantity: 1, size: null}))
+  };
 
   if (!product) {
     return;
@@ -94,14 +108,12 @@ const Product = () => {
                 }
                 type="number"
                 min={1}
-                defaultValue={Number(input.quantity)}
+                value={Number(input.quantity)}
               />
             </ButtonGroup>
           </ButtonContainer>
           {warning && <Warning>Please select all detail.</Warning>}
-          <SubmitButton onClick={addToCart}>
-            ADD TO CART
-          </SubmitButton>
+          <SubmitButton onClick={addToCart}>ADD TO CART</SubmitButton>
         </ButtonContainer>
       </ContentBox>
     </Container>
