@@ -20,7 +20,7 @@ export const TopBorder = styled.div`
   width: 24rem;
   border-top: 1px solid #888;
   @media (max-width: 480px) {
-    width: calc(90vw - 10rem)
+    width: calc(90vw - 10rem);
   }
 `;
 
@@ -50,7 +50,7 @@ export const ItemTitle = styled.h4`
 `;
 
 export const ItemPriceContainer = styled.p`
-  ${'' /* font-size: 1.4rem; */}
+  ${"" /* font-size: 1.4rem; */}
   margin: 2rem 0;
 `;
 
@@ -59,5 +59,20 @@ export const ItemPrice = styled.span`
 `;
 
 export const ItemSize = styled.p`
-  ${'' /* font-size: 1.4rem; */}
+  font-size: 1.6rem;
+`;
+
+export const DeleteButton = styled.button`
+  margin-top: 2rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #ff0000;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s linear;
+  &:hover {
+    background-color: #aa4a44;
+  }
 `;

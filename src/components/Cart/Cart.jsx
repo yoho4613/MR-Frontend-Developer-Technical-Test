@@ -2,6 +2,7 @@ import React from "react";
 import {
   CartList,
   Container,
+  DeleteButton,
   InnerContainer,
   ItemContentBox,
   ItemImg,
@@ -11,25 +12,32 @@ import {
   ItemTitle,
   TopBorder,
 } from "./style";
-import { useStateContext } from "../../context/StateContext";
+// import { useStateContext } from "../../context/StateContext";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../../redux/slices/cart";
 
 const Cart = () => {
+  // const { cart } = useStateContext();
+  const cart = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
 
-  const { cart } = useStateContext();
+  const deleteItem = (item) => {
+    dispatch(removeFromCart(item));
+  };
 
-  if(!cart.length) {
+  if (!cart.length) {
     return (
       <Container>
-      <TopBorder></TopBorder>
+        <TopBorder></TopBorder>
         <InnerContainer>
           <p>There is no cart items...</p>
         </InnerContainer>
       </Container>
-    )
+    );
   }
 
   return (
-    <Container >
+    <Container>
       <TopBorder></TopBorder>
       <InnerContainer>
         {cart.map((item, i) => (
@@ -42,6 +50,11 @@ const Cart = () => {
                 <ItemPrice>${item.price * item.quantity}</ItemPrice>
               </ItemPriceContainer>
               <ItemSize>Size: {item.size}</ItemSize>
+              <DeleteButton
+                onClick={() => deleteItem({ id: item.id, size: item.size })}
+              >
+                Remove
+              </DeleteButton>
             </ItemContentBox>
           </CartList>
         ))}

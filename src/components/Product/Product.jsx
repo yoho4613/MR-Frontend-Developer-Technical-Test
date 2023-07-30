@@ -15,23 +15,29 @@ import {
   QuantityInput,
   Warning,
 } from "./style";
-import { useStateContext } from "../../context/StateContext";
+// import { useStateContext } from "../../context/StateContext";
+import { useDispatch } from "react-redux";
+import { addCart } from "../../redux/slices/cart";
+import { fetchProduct } from "../../api/product";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
-  const { setCart, cart } = useStateContext();
   const [input, setInput] = useState({ quantity: 1 });
   const [warning, setWarning] = useState(false);
+  const dispatch = useDispatch()
+  
 
   useEffect(() => {
     fetchProductDetail();
   }, []);
 
   const fetchProductDetail = async () => {
-    const result = await fetch(
-      "https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product"
-    );
-    const product = await result.json();
+
+    const product = await fetchProduct("https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product")
+    // const result = await fetch(
+    //   "https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product"
+    // );
+    // const product = await result.json();
 
     if (!product) {
       alert(`Error appears (${product.status})`);
@@ -52,21 +58,10 @@ const Product = () => {
       setWarning(true);
       return;
     }
-
-    if (cart.find((item) => item.id === input.id && item.size === input.size)) {
-      setCart((prev) =>
-        prev.map((item) =>
-          item.id === input.id && item.size === input.size
-            ? { ...item, quantity: Number(item.quantity) + Number(input.quantity) }
-            : item
-        )
-      );
-    } else {
-      setCart((prev) => [...prev, input]);
-    }
-
+   
+    dispatch(addCart(input))
     setWarning(false);
-    setInput( prev => ({...prev, quantity: 1, size: null}))
+    setInput(prev => ({...prev, quantity: 1, size: null}))
   };
 
   if (!product) {
@@ -93,7 +88,7 @@ const Product = () => {
                 onClick={() =>
                   setInput((prev) => ({ ...prev, size: size.label }))
                 }
-                isactive={input.size === size.label}
+                isactive={input.size === size.label ? "active" : undefined}
               >
                 {size.label}
               </Button>

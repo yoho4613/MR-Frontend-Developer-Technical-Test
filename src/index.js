@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { StateContext } from "./context/StateContext";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+// import { StateContext } from "./context/StateContext";
 
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
 root.render(
-  <StateContext>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </StateContext>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
