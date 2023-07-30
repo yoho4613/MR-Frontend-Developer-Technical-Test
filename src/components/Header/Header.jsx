@@ -12,7 +12,7 @@ const Header = () => {
       <ListGroup>
         <List
           onClick={() => setCartPopup((prev) => !prev)}
-          isactive={cartPopup ? true : false}
+          isactive={cartPopup ? "active" : undefined}
         >
           My Cart ( {cart.length} )
         </List>

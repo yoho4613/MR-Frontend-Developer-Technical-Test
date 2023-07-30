@@ -93,7 +93,7 @@ const Product = () => {
                 onClick={() =>
                   setInput((prev) => ({ ...prev, size: size.label }))
                 }
-                isactive={input.size === size.label}
+                isactive={input.size === size.label ? "active" : undefined}
               >
                 {size.label}
               </Button>

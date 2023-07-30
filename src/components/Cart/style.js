@@ -61,3 +61,17 @@ export const ItemPrice = styled.span`
 export const ItemSize = styled.p`
   ${'' /* font-size: 1.4rem; */}
 `;
+export const DeleteButton = styled.button`
+  margin-top: 2rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #ff0000;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s linear;
+  &:hover {
+    background-color: #aa4a44;
+  }
+`;

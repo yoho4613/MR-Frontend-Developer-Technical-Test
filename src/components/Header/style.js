@@ -31,9 +31,9 @@ export const List = styled.li`
   display:flex;
   align-items: center;
   list-style: none;
-  color: ${(props) => (props.isactive ? "#222" : "#888")};
-  background-color: ${(props) => (props.isactive ? "#fff" : "transparent")};
-  border: ${(props) => (props.isactive ? "1px solid #888" : "none")};
+  color: ${(props) => (props.isactive === "active" ? "#222" : "#888")};
+  background-color: ${(props) => (props.isactive === "active" ? "#fff" : "transparent")};
+  border: ${(props) => (props.isactive === "active" ? "1px solid #888" : "none")};
   border-bottom: none;
   font-size: 1.1rem;
   font-weight: 500;

@@ -89,14 +89,16 @@ export const Button = styled.button`
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 1.5rem;
-  color: ${(props) => (props.isactive ? "#000" : "#888")};
+  color: ${(props) => (props.isactive === "active" ? "#000" : "#888")};
   margin-right: 0.3rem;
-  background-color: ${(props) => (props.isactive ? "#ccc" : "transparent")};
+  background-color: ${(props) =>
+    props.isactive === "active" ? "#ccc" : "transparent"};
   font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s linear;
   &:hover {
-    background-color: ${(props) => (props.isactive ? "#c1c1c1" : "#ccc")};
+    background-color: ${(props) =>
+      props.isactive === "active" ? "#c1c1c1" : "#ccc"};
     color: #000;
   }
 `;
